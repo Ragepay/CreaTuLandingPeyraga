@@ -1,8 +1,8 @@
-const CartWidget = () => {
+const CartWidget = (props) => {
     return (
       <div className="cart-widget">
-        <span>🛒</span> {/* Icono del carrito */}
-        <span>0</span> {/* Número de artículos en el carrito */}
+        <span>🛒</span> {/* Icono del carrito */} 
+        <span>{props.counter}</span> {/* Número de artículos en el carrito */}
       </div>
     );
   };
