@@ -24,10 +24,14 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0 ;
+}
+
+.container { /* Agregado un contenedor principal */
+  width: 100%;
+  max-width: 1200px; /* Máximo ancho */
+  margin: 0 auto; /* Centrar el contenedor */
+  padding: 20px; /* Espaciado interno */
 }
 
 h1 {
