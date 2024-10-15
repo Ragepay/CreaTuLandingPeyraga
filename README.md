@@ -23,5 +23,3 @@ Este proyecto es una aplicación web desarrollada en React que permite a los usu
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/Ragepay/CreaTuLandingPeyraga
-
-
