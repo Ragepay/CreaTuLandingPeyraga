@@ -29,24 +29,107 @@ const App = () => {
   useEffect(() => {
     setProductos([
       {
-        id: "jsdhfnj347fj",
-        title: "Play Station 4",
-        image: "https://nextgames.com.ar/img/Public/1040/62236-producto-61ffvkc3d3l-ac-sl1500.jpg",
-        description: "Disponible en 500 GB y 1 TB.",
-        price: "500", 
-        stock: 20,
-        quantity:0
+        "id": "gfh347fj",
+        "title": "Xbox Series X",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Disponible en 1 TB.",
+        "price": "600",
+        "stock": 15,
+        "quantity": 0,
+        "category": "Consolas"
       },
       {
-        id: "jsdhfnj347fh",
-        title: "Play Station 5",
-        image: "https://nextgames.com.ar/img/Public/1040/62236-producto-61ffvkc3d3l-ac-sl1500.jpg",
-        description: "Disponible en 1 TB y 2 TB.",
-        price: "650",
-        stock: 30,
-        quantity:0
+        "id": "sdfg457fh",
+        "title": "Xbox Series S",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Disponible en 500 GB.",
+        "price": "400",
+        "stock": 25,
+        "quantity": 0,
+        "category": "Consolas"
+      },
+      {
+        "id": "gjsnfj48fh",
+        "title": "Nintendo Switch",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Edición estándar con Joy-Con azul y rojo.",
+        "price": "300",
+        "stock": 40,
+        "quantity": 0,
+        "category": "Consolas"
+      },
+      {
+        "id": "lsdnfj234jh",
+        "title": "Nintendo Switch OLED",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Pantalla OLED y 64 GB de almacenamiento interno.",
+        "price": "350",
+        "stock": 30,
+        "quantity": 0,
+        "category": "Consolas"
+      },
+      {
+        "id": "jsdhfbv84fj",
+        "title": "PlayStation VR",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Auriculares de realidad virtual para PS4 y PS5.",
+        "price": "250",
+        "stock": 20,
+        "quantity": 0,
+        "category": "Accesorios"
+      },
+      {
+        "id": "bvfngj347dj",
+        "title": "Xbox Elite Controller",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Controlador de alta precisión para Xbox y PC.",
+        "price": "150",
+        "stock": 35,
+        "quantity": 0,
+        "category": "Accesorios"
+      },
+      {
+        "id": "hsdjfhg734hj",
+        "title": "DualSense Controller",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Controlador inalámbrico para PS5.",
+        "price": "70",
+        "stock": 50,
+        "quantity": 0,
+        "category": "Accesorios"
+      },
+      {
+        "id": "kgfhwiu847dh",
+        "title": "PlayStation 4 Slim",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Versión compacta de la PS4, 500 GB.",
+        "price": "400",
+        "stock": 25,
+        "quantity": 0,
+        "category": "Consolas"
+      },
+      {
+        "id": "asdfg8347kj",
+        "title": "Nintendo Switch Lite",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Consola portátil en colores variados.",
+        "price": "200",
+        "stock": 45,
+        "quantity": 0,
+        "category": "Consolas"
+      },
+      {
+        "id": "qwer5482bn",
+        "title": "Xbox Game Pass Ultimate",
+        "image": "https://via.placeholder.com/300x300",
+        "description": "Suscripción de 12 meses con acceso a más de 100 juegos.",
+        "price": "100",
+        "stock": 100,
+        "quantity": 0,
+        "category": "Suscripciones"
       }
-    ]);
+    ]
+    );
   }, []); // Ejecuta solo una vez al montar el componente
 
 
@@ -61,31 +144,7 @@ const App = () => {
     }
   };
 
-/*
-  const eliminarProducto = (id) => {
-    const nuevosProductos = productosCart.filter(producto => producto.id !== id);
-    setProductos(nuevosProductos);
-};
-
-const aumentarCantidad = (id) => {
-  const nuevosProductos = productosCart.map(producto => 
-      producto.id === id ? { ...producto, quantity: producto.quantity + 1 } : producto
-  );
-  setProductos(nuevosProductos);
-};
-*/
-
-  /*
-  // useEffect para saludo del nombre
-  useEffect(() => {
-    const nombreIngresado = prompt("Ingrese su nombre:");
-    if (nombreIngresado) {
-      setNombre(nombreIngresado);
-    }
-  }, []);
-  */
-
-  // Layout de Header + Footer.
+  // Layout de Header + Children + Footer.
   const Layout = ({ children }) => {
     return (
       <div>
@@ -98,22 +157,19 @@ const aumentarCantidad = (id) => {
 
   return (
     <>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/carrito" element={<Carrito productos={productos} />}></Route>
-          <Route path="/productos" element={<ItemListContainer onClickMas={increment} onClickMenos={decrement} productos={productos} />}></Route>
-          <Route path="/detail/:id" element={<Detail />}></Route>
-          <Route path="/contacto" element={<Contacto />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </Layout>
+        <Layout>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/carrito" element={<Carrito productos={productos} />} />
+                <Route path="/productos" element={<ItemListContainer onClickMas={increment} onClickMenos={decrement} productos={productos} />} />
+                <Route path="/detail/:id" element={<Detail productos={productos} onClickMas={increment} onClickMenos={decrement} />} />
+                <Route path="/contacto" element={<Contacto />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </Layout>
     </>
   );
 };
 
 export default App;
 
-//<NavBar counter={count} />
-//      <ItemListContainer onClickMas={increment} onClickMenos={decrement} />
-//    <Footer />

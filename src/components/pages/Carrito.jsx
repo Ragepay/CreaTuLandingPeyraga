@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './Carrito.css'; // Asegúrate de tener un archivo CSS para estilos
 
-const Carrito = ({productos}) => {
-    const [productosCart, setProductos] = useState([...productos
-    ]);
+const Carrito = ({ productos }) => {
+    const [productosCart, setProductos] = useState([...productos]);
 
     const eliminarProducto = (id) => {
         const nuevosProductos = productosCart.filter(producto => producto.id !== id);
@@ -11,17 +10,15 @@ const Carrito = ({productos}) => {
     };
 
     const aumentarCantidad = (id) => {
-      const nuevosProductos = productosCart.map(producto => 
-          producto.id === id ? { ...producto, quantity: producto.quantity + 1 } : producto
-      );
-      setProductos(nuevosProductos);
-  };
+        const nuevosProductos = productosCart.map(producto => 
+            producto.id === id ? { ...producto, quantity: producto.quantity + 1 } : producto
+        );
+        setProductos(nuevosProductos);
+    };
 
     const totalCarrito = () => {
         return productosCart.reduce((total, producto) => total + (producto.price * producto.quantity), 0);
     };
-
-    
 
     const disminuirCantidad = (id) => {
         const nuevosProductos = productosCart.map(producto => {
