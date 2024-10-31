@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../Card/Card.jsx";
 import Filtro from "../filtro/Filtro.jsx";
@@ -6,15 +6,16 @@ import "./ItemListContainer.css";
 
 const ItemListContainer = ({ productos }) => {
     const [selectedCategory, setSelectedCategory] = useState("all");
+    //const [loading, setLoading] = useState(true)
     const navigate = useNavigate();
     const categories = [...new Set(productos.map(product => product.category).filter(Boolean))];
     const filteredProducts = selectedCategory === "all"
         ? productos
         : productos.filter(product => product.category === selectedCategory);
 
-    const handleCardClick = (id) => {
-        navigate(`/detail/${id}`);
-    };
+    // const handleCardClick = (id) => {
+    //    navigate(`/detail/${id}`); x
+    //};
 
     return (
         <div className="item-list-container">

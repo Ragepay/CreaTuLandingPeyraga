@@ -134,13 +134,27 @@ const App = () => {
 
 
   // Incrementar contador
-  const increment = () => {
+  const increment = (id) => {
     setCount(count + 1);
+    setProductos((productos) =>
+      productos.map((producto) =>
+        producto.id === id
+          ? { ...producto, stock: producto.stock - 1 }
+          : producto
+      )
+    );
   };
   //  Decrementar contador
-  const decrement = () => {
+  const decrement = (id) => {
     if (count > 0) {
       setCount(count - 1);
+      setProductos((productos) =>
+        productos.map((producto) =>
+          producto.id === id
+            ? { ...producto, stock: producto.stock + 1 }
+            : producto
+        )
+      );
     }
   };
 
@@ -157,16 +171,16 @@ const App = () => {
 
   return (
     <>
-        <Layout>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/carrito" element={<Carrito productos={productos} />} />
-                <Route path="/productos" element={<ItemListContainer onClickMas={increment} onClickMenos={decrement} productos={productos} />} />
-                <Route path="/detail/:id" element={<Detail productos={productos} onClickMas={increment} onClickMenos={decrement} />} />
-                <Route path="/contacto" element={<Contacto />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </Layout>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/carrito" element={<Carrito productos={productos} />} />
+          <Route path="/productos" element={<ItemListContainer productos={productos} />} />
+          <Route path="/detail/:id" element={<Detail productos={productos} onClickMas={increment} onClickMenos={decrement} key={productos.id} />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
     </>
   );
 };

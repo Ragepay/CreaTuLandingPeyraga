@@ -16,10 +16,10 @@ const Detail = ({ onClickMas, onClickMenos, productos }) => {
             <p>{product.description}</p>
             <p>Precio: ${product.price}</p>
             <p>Stock: {product.stock}</p>
-            <button className="card-button" onClick={onClickMenos}>
+            <button className="card-button" onClick={() => onClickMenos(id)}>
                 - Carrito
             </button>
-            <button className="card-button" onClick={onClickMas}>
+            <button className="card-button" onClick={() => onClickMas(id)}>
                 + Carrito
             </button>
         </div>
