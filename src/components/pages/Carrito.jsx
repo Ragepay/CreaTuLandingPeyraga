@@ -1,51 +1,68 @@
-import React, { useState } from 'react';
-import './Carrito.css'; // Asegúrate de tener un archivo CSS para estilos
+import React, { useState, useContext, useEffect } from 'react';
+import './Carrito.css';
+import { ProductContext } from '../Context/productsContext';
+import Loading from './Loading';
 
-const Carrito = ({ productos }) => {
-    const [productosCart, setProductos] = useState([...productos]);
+const Carrito = () => {
+    // Usando el contexto de productos y funciones increment y drecrement.
+    const { productos, increment, decrement, eliminarProducto } = useContext(ProductContext);
+    // Estado para productos del carrito.
+    const [productosCart, setProductosCart] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const eliminarProducto = (id) => {
-        const nuevosProductos = productosCart.filter(producto => producto.id !== id);
-        setProductos(nuevosProductos);
-    };
+    // useEffect para establecer el estado de productos
+    useEffect(() => {
+        setTimeout(() => {
+            setProductosCart(productos)
+        }, 20)
+        setLoading(false);
+    }, [productos]); // Ejecuta solo una vez al montar el componente
 
+
+    // Aumentar cantidad de un producto en el carrito.
     const aumentarCantidad = (id) => {
-        const nuevosProductos = productosCart.map(producto => 
-            producto.id === id ? { ...producto, quantity: producto.quantity + 1 } : producto
-        );
-        setProductos(nuevosProductos);
+        increment(id);
+        setProductosCart(productos);
     };
 
+    // Disminuir cantidad de un producto en el carrito.
+    const disminuirCantidad = (id) => {
+        decrement(id);
+        setProductosCart(productos);
+    };
+
+
+    // Calculo del total del carrito.
     const totalCarrito = () => {
         return productosCart.reduce((total, producto) => total + (producto.price * producto.quantity), 0);
     };
 
-    const disminuirCantidad = (id) => {
-        const nuevosProductos = productosCart.map(producto => {
-            if (producto.id === id && producto.quantity > 1) {
-                return { ...producto, quantity: producto.quantity - 1 };
-            }
-            return producto;
-        });
-        setProductos(nuevosProductos);
-    };
+    if (loading) return <Loading />
 
     return (
         <div className="carrito-container">
             <h1 className="carrito-title">Carrito de Compras</h1>
             <div className="productos-list">
-                {productosCart.map((producto) => (
-                    <div key={producto.id} className="producto-item">
-                        <h2>{producto.title}</h2>
-                        <p>Precio: ${producto.price}</p>
-                        <div className="cantidad-container">
-                            <button onClick={() => disminuirCantidad(producto.id)} className="cantidad-button">-</button>
-                            <span>{producto.quantity}</span>
-                            <button onClick={() => aumentarCantidad(producto.id)} className="cantidad-button">+</button>
-                        </div>
-                        <button onClick={() => eliminarProducto(producto.id)} className="eliminar-button">Eliminar</button>
-                    </div>
-                ))}
+                {productosCart.map((producto) => {
+                    // Comprobar que la cantidad es mayor a 0.
+                    if (producto.quantity > 0) {
+                        return (
+                            <div key={producto.id} className="producto-item">
+                                <h2>{producto.title}</h2>
+                                <p>Precio: ${producto.price}</p>
+                                <div className="cantidad-container">
+                                    <button onClick={() => disminuirCantidad(producto.id)}>-</button>
+                                    <span>{producto.quantity}</span>
+                                    <button onClick={() => aumentarCantidad(producto.id)}>+</button>
+                                </div>
+                                <button onClick={() => eliminarProducto(producto.id)} className="eliminar-button">Eliminar</button>
+                            </div>
+                        );
+                    }
+                    // Retorna null si la condición no se cumple (si la cantidad es menor a 0)
+                    return null;
+                })}
+
             </div>
             <div className="total">
                 <h3>Total: ${totalCarrito()}</h3>
