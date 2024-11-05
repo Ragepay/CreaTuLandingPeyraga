@@ -12,7 +12,8 @@ const ProductProvider = ({ children }) => {
 
     // useEffect para establecer el estado de productos
     useEffect(() => {
-        setProductos([
+        // Cargar productos predeterminados
+        const productosPredeterminados = [
             {
                 "id": "gfh347fj",
                 "title": "Xbox Series X",
@@ -29,7 +30,7 @@ const ProductProvider = ({ children }) => {
                 "image": "https://via.placeholder.com/300x300",
                 "description": "Disponible en 500 GB.",
                 "price": "400",
-                "stock": 25,
+                "stock": 2,
                 "quantity": 0,
                 "category": "Consolas"
             },
@@ -113,10 +114,33 @@ const ProductProvider = ({ children }) => {
                 "quantity": 0,
                 "category": "Suscripciones"
             }
-        ]
-        );
+        ];
 
+        // Cargar carrito guardado desde localStorage
+        const carritoGuardado = JSON.parse(localStorage.getItem("productosCart")) || [];
+
+        // Ajustar los productos con la cantidad del carrito guardado y verificar el stock
+    const productosConCantidad = productosPredeterminados.map((producto) => {
+        const productoEnCarrito = carritoGuardado.find(item => item.id === producto.id);
+        const cantidadAjustada = productoEnCarrito 
+            ? Math.min(productoEnCarrito.quantity, producto.stock) // Ajustar quantity según stock disponible
+            : 0;
+        
+        return {
+            ...producto,
+            quantity: cantidadAjustada,
+            stock: producto.stock
+        };
+    });
+
+        // Cargar la cantidad a los productos existentes desde la BBDD.
+        setProductos(productosConCantidad);
+
+        // Calcular el total de quantities en el carrito guardado
+        const totalQuantity = productosConCantidad.reduce((acc, producto) => acc + producto.quantity, 0);
+        setCount(totalQuantity); // Establecer count con el total de quantities
     }, []); // Ejecuta solo una vez al montar el componente
+
 
     const increment = (id) => {
         setProductos((productos) =>
@@ -139,7 +163,9 @@ const ProductProvider = ({ children }) => {
 
     //  Decrementar contador
     const decrement = (id) => {
-        if (count > 0) {
+        const producto = productos.find(producto => producto.id === id);
+
+        if ((count > 0) && (producto.quantity > 0)) {
             setCount(count - 1);
             setProductos((productos) =>
                 productos.map((producto) =>
