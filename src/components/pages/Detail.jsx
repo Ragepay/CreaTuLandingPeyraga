@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom';
 import './Detail.css';
 import { ProductContext } from '../Context/productsContext';
 
+
 const Detail = () => {
     // Cotexto de productos y funciones de increment y decrement.
-    const { productos, increment, decrement } = useContext(ProductContext);
+    const { increment, decrement, Getdoc } = useContext(ProductContext);
     // Hook de useParams para traer el detail correcto.
     const { id } = useParams();
 
-    const product = productos.find(product => product.id === id); // Asegúrate de que ambos sean strings
+    const product = Getdoc(id)
+    console.log(product);
+    //productos.find(product => product.id === id); // Asegúrate de que ambos sean strings
 
     if (!product) return <p>Producto no encontrado.</p>;
 

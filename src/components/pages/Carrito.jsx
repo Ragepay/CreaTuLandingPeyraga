@@ -17,8 +17,6 @@ const Carrito = () => {
 
     // useEffect para establecer el estado de productos
     useEffect(() => {
-        const carritoGuardado = JSON.parse(localStorage.getItem("productosCart"));
-        console.log(carritoGuardado);
         setTimeout(() => {
             setProductosCart(productos);
             setLoading(false);
