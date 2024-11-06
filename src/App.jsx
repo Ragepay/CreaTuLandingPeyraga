@@ -9,6 +9,7 @@ import Contacto from './components/pages/Contacto';
 import Detail from './components/pages/Detail';
 import Home from './components/pages/Home';
 import ItemListContainer from './components/pages/ItemListContainer';
+import AddProduct from './components/Admin/AddProduct';
 import NotFound from './components/pages/NotFound';
 //  CSS
 import "./App.css"
@@ -29,17 +30,17 @@ const App = () => {
 
   return (
     <>
-      <Layout>
-        <Routes>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/productos" element={<ItemListContainer />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
-      {/*<Route path="/admin/:password" element={<Admin />} />*/}
+        </Route>
+        <Route path="/admin/:password" element={<AddProduct />} />
+      </Routes>
     </>
   );
 };

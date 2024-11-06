@@ -2,9 +2,9 @@ import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { collection, getDocs, /*addDoc, updateDoc,*/ getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, /*updateDoc,*/ } from "firebase/firestore";
 import BBDD from "../../config/firebase";
-import db from '../../config/firebase';
+// import db from '../../config/firebase';
 
 
 
@@ -89,29 +89,13 @@ const ProductProvider = ({ children }) => {
         }
     };
 
-    // Funcion para traer un producto por ID.
-    const GetDoc = async (id) => {
-        const docRef = doc(db, "Productos", id);
-        const snap = getDoc(docRef).then((snap) => {
-            console.log(snap.data());
-            return (snap.data())
-        })
-        return snap
-    }
-    /*
-    
-    
+    //  Agregar productos a la BBDD.
     const AddProduct = async (producto) => {
         const collRef = collection(BBDD.db, "Products");
-        const doc = await addDoc(collRef, {
-            ...producto
-            description: "Harina",
-            stock: 20,
-            price: 800,
-            status: true,
-        });
+        const doc = await addDoc(collRef, { ...producto });
         console.log("Se guardo el producto con el id -> ", doc.id);
     };
+    /*
     
     const updateProduct = async () => {
         const id = "RBIYIUMolX9kQE3uWdUe"
@@ -164,7 +148,7 @@ const ProductProvider = ({ children }) => {
         increment,
         decrement,
         eliminarProducto,
-        GetDoc
+        AddProduct
     }
 
     // Componente que va a proveer el context

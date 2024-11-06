@@ -10,7 +10,7 @@ const ItemCount = ({ id,textMas, textMenos, classMas, classMenos }) => {
     return (
         <>
             <button className={classMenos} onClick={() => decrement(id)} >{textMenos}</button>
-            <span>{producto.quantity}</span>
+            <span>{producto?.quantity}</span>
             <button className={classMas} onClick={() => increment(id)} >{textMas}</button>
         </>
     );
