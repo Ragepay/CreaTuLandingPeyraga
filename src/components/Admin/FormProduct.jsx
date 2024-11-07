@@ -36,6 +36,17 @@ const FormProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await AddProduct({ ...formData, image: imageURL });
+        setFormData({
+            title: '',
+            stock: 0,
+            status: true,
+            price: '',
+            image: null,
+            description: '',
+            category: '',
+            quantity: 0
+        })
+        setImageURL('')
     };
 
     // Funcion para subir imagen y guardar el url en imageURL

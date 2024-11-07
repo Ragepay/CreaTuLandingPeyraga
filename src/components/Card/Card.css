@@ -86,35 +86,39 @@
 /* Responsive styling */
 @media (max-width: 768px) {
   .card {
-      max-width: 100%;
-      margin: 15px auto;
+    max-width: 100%;
+    margin: 15px auto;
   }
 
   .card-content {
-      padding: 15px;
+    padding: 15px;
   }
 
   .card-title {
-      font-size: 1.4em;
+    font-size: 1.4em;
   }
 
   .card-price {
-      font-size: 1.2em;
+    font-size: 1.2em;
   }
 
   .card-description,
   .card-stock {
-      font-size: 0.9em;
+    font-size: 0.9em;
   }
 
   .buttonCard {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .card-button {
-      width: 80%;
-      margin: 5px 0;
-      font-size: 0.9em;
-      padding: 8px 0;
+    width: 80%;
+    margin: 5px 0;
+    font-size: 0.9em;
+    padding: 8px 0;
   }
+}
+
+@media (max-width: 415px) {
+  
 }

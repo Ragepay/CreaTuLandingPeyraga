@@ -1,6 +1,6 @@
 .footer {
-    background-color: #282c34;
-    color: white;
+    background-color: #F3F4F6;
+    color: #282c34;
     padding: 20px 0;
     text-align: center;
   }
@@ -27,8 +27,32 @@
   .links a {
     color: white;
     text-decoration: none;
+    padding: 10px 20px;
+    background-color: #FD7014;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
   .links a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color: #FD7014;
+    border: 1px solid #FD7014;
   }
+
+  .contact-form button {
+    padding: 10px 20px;
+    background-color: #FD7014;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #FFFFFF;
+    color: #FD7014;
+    border: 1px solid #FD7014;
+}

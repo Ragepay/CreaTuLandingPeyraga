@@ -11,6 +11,7 @@ import Home from './components/pages/Home';
 import ItemListContainer from './components/pages/ItemListContainer';
 import AdminManager from './components/Admin/AdminManager';
 import NotFound from './components/pages/NotFound';
+import WhatsAppButton from './components/Layout/Whatsapp';
 //  CSS
 import "./App.css"
 // USE STATE
@@ -25,6 +26,7 @@ const App = () => {
         <NavBar />
         {children}
         <Footer />
+        <WhatsAppButton/>
       </div>
     )
   }

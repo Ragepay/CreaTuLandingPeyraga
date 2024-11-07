@@ -1,3 +1,5 @@
+
+
 .home-container {
     text-align: center;
     /* Centra el contenido */
@@ -11,7 +13,6 @@
     /* Sombra para dar profundidad */
     margin: 20px;
     /* Margen externo */
-    margin-top: 50px;
 }
 
 .home-title {
