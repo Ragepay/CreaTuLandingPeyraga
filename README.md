@@ -33,3 +33,15 @@
 cd HerramientasMorelli
 npm install
 npm run dev
+
+
+.env necesarios:
+
+VITE_API_KEY=AIzaSyD8D6C1kDoMBKEQ2JUEKbtA2rfUO3Vbt8o
+VITE_AUTH_DOMAIN=oderhouseproyect-react-peyra.firebaseapp.com
+VITE_PROJECT_ID=coderhouseproyect-react-peyra
+VITE_STORAGE_BUCKET=coderhouseproyect-react-peyra.appspot.com
+VITE_MESSAGING_SENDER_ID=947146217435
+VITE_APP_ID=1:947146217435:web:4a057d8fdc790a422079fe
+VITE_MEASUREMENT_ID=G-B7ZRSPRXVP
+VITE_ADMIN_PASSWORD=12345678
