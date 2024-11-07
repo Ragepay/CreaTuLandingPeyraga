@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { collection, getDocs, addDoc, /*updateDoc,*/ } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import BBDD from "../../config/firebase";
 // import db from '../../config/firebase';
 
@@ -93,35 +93,24 @@ const ProductProvider = ({ children }) => {
     const AddProduct = async (producto) => {
         const collRef = collection(BBDD.db, "Products");
         const doc = await addDoc(collRef, { ...producto });
-        console.log("Se guardo el producto con el id -> ", doc.id);
+        
     };
-    /*
-    
-    const updateProduct = async () => {
-        const id = "RBIYIUMolX9kQE3uWdUe"
-        const collRef = collection(db, "Products", id)
-    
+
+    // Actualizar Producto de la BBDD.
+    const UpdateProduct = async (id, producto) => {
+        const collRef = doc(BBDD.db, "Products", id)
         // setDoc sobre escribo todo el elemento
         // updateDoc sobreescribe lo necesario.
-        await updateDoc(collRef, {
-            description: "harina",
-            price: 1500,
-            status: true,
-            stock: 20
-    
-        })
-        console.log("Modificando")
+        await updateDoc(collRef, { ...producto });
     }
-    
-    const deleteProduct = async () => {
-        const id = "RBIYIUMolX9kQE3uWdUe"
-        const collRef = collection(db, "Products", id)
-        await deleteDoc(collRef)
-        console.log("Eliminado")
+
+    // Elimianr Producto de la BBDD.
+    const DeleteProduct = async (id) => {
+        const docRef = doc(BBDD.db, "Products", id);
+        await deleteDoc(docRef);
     }
-    */
 
-
+    // Eliminar Producto del carrito
     const eliminarProducto = (id) => {
         // Encuentra el producto y cambia su quantity a 0
         const nuevosProductos = productos.map(producto => {
@@ -139,7 +128,7 @@ const ProductProvider = ({ children }) => {
         setCount(count - cantidadEliminada);
     };
 
-    // lo que se exporta
+    // Exportacion de estados y funciones del Context.
     const value = {
         count,
         setCount,
@@ -148,7 +137,9 @@ const ProductProvider = ({ children }) => {
         increment,
         decrement,
         eliminarProducto,
-        AddProduct
+        AddProduct,
+        UpdateProduct,
+        DeleteProduct
     }
 
     // Componente que va a proveer el context

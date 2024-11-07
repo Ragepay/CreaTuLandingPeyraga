@@ -14,9 +14,9 @@ const CardAdmin = ({ id, title, image, description, price, stock }) => {
                 <p className="card-stock">Stock: {stock}</p>
             </div>
             <div className="buttonCard">
-                <button className="cantidad-button" disable="true" >- Carrito</button>
+                <button className="cantidad-button" disabled={true} >- Carrito</button>
                 <span>0</span>
-                <button className="cantidad-button" disable="true" >+ Carrrito</button>
+                <button className="cantidad-button" disabled={true} >+ Carrrito</button>
             </div>
         </div>
     );

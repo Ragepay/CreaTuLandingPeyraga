@@ -27,17 +27,19 @@ const ItemListContainer = () => {
             </div>
             <h3>Productos:</h3>
             <div className="products-container">
-                {filteredProducts.map((producto) => (
-                    <Card
-                        key={producto.id}
-                        id={producto.id}
-                        title={producto.title}
-                        image={producto.image}
-                        description={producto.description}
-                        price={producto.price}
-                        stock={producto.stock}
-                    />
-                ))}
+                {filteredProducts
+                    .filter((producto) => producto.status === true) // Filtramos los productos con status true
+                    .map((producto) => (
+                        <Card
+                            key={producto.id}
+                            id={producto.id}
+                            title={producto.title}
+                            image={producto.image}
+                            description={producto.description}
+                            price={producto.price}
+                            stock={producto.stock}
+                        />
+                    ))}
             </div>
         </div>
     );

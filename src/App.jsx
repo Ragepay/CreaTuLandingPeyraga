@@ -9,12 +9,13 @@ import Contacto from './components/pages/Contacto';
 import Detail from './components/pages/Detail';
 import Home from './components/pages/Home';
 import ItemListContainer from './components/pages/ItemListContainer';
-import AddProduct from './components/Admin/AddProduct';
+import AdminManager from './components/Admin/AdminManager';
 import NotFound from './components/pages/NotFound';
 //  CSS
 import "./App.css"
 // USE STATE
 import { Routes } from 'react-router-dom';
+
 
 const App = () => {
   // Layout de Header + Children + Footer.
@@ -28,19 +29,21 @@ const App = () => {
     )
   }
 
+
+
   return (
     <>
-      <Routes>
-        <Route element={<Layout />}>
+      <Layout>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/productos" element={<ItemListContainer />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="*" element={<NotFound />} />
-        </Route>
-        <Route path="/admin/:password" element={<AddProduct />} />
-      </Routes>
+          <Route path="/admin/:password" element={<AdminManager />} />
+        </Routes>
+      </Layout>
     </>
   );
 };

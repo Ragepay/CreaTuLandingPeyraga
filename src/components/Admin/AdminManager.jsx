@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
 import FormProduct from "./FormProduct";
 import { adminConfig } from "../../config/config";
+import CardManager from "./CardManager";
 
-
-
-
-
-
-const AddProduct = () => {
+const AdminManager = () => {
+    //  Traer el password por params.
     const { password } = useParams();
     const adminpassword = adminConfig.password
-    console.log(adminConfig.password)
-    
-    if (password == adminpassword) return (<FormProduct />)
+
+    //  Compara la contraseña con la contraseña que viene por .env
+    if (password == adminpassword) return (
+        <>
+            <FormProduct />
+            <CardManager />
+        </>)
 
     return (
         <div>
@@ -21,4 +22,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default AdminManager;

@@ -1,120 +1,110 @@
-/* FormProduct.css */
-
-body {
-    font-family: Arial, sans-serif;
+/* Estilos generales */
+.form-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
 }
 
 h2 {
-    text-align: center;
     margin-bottom: 20px;
-    color: #333;
 }
 
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-form div {
-    margin-bottom: 15px;
+/* Estilos del contenedor del formulario y la vista previa */
+.containerFormCard {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Estilos para el formulario */
+.form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los grupos de campos */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
     font-weight: bold;
     margin-bottom: 5px;
-    color: #555;
+    display: block;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="file"],
-textarea {
+input, textarea {
+    width: 100%;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    width: 100%;
+    font-size: 14px;
 }
 
-input[type="checkbox"] {
-    width: auto;
-    margin-top: 6px;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    color: #fff;
+/* Estilos del botón */
+.submit-button {
     background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
 }
 
-button[type="submit"]:hover {
+.submit-button:hover {
     background-color: #45a049;
 }
 
-/* Responsive styles */
+/* Vista previa del producto */
+.card-preview {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsivo: en pantallas pequeñas, apilar los elementos */
 @media (max-width: 768px) {
-    form {
-        padding: 15px;
+    .containerFormCard {
+        flex-direction: column; /* Cambia a disposición vertical */
+        align-items: center;
     }
 
-    label {
-        font-size: 14px;
+    .form, .card-preview {
+        max-width: 100%;
+        margin-bottom: 20px; /* Agrega espacio entre el formulario y la vista previa */
     }
 
-    input[type="text"],
-    input[type="number"],
-    input[type="file"],
-    textarea {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    button[type="submit"] {
-        padding: 10px;
-        font-size: 14px;
+    .submit-button {
+        width: auto;
     }
 }
 
 @media (max-width: 480px) {
-    h2 {
-        font-size: 24px;
+    .form {
+        padding: 15px;
     }
 
-    form {
-        padding: 10px;
-    }
-
-    label {
-        font-size: 12px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="file"],
-    textarea {
-        font-size: 12px;
-        padding: 6px;
-    }
-
-    button[type="submit"] {
-        padding: 8px;
-        font-size: 12px;
+    .submit-button {
+        font-size: 14px;
     }
 }
