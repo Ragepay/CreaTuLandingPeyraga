@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../Context/productsContext';
-import './cartWidget.css'
+import './CartWidget.css'
 
 const CartWidget = () => {
   const { count } = useContext(ProductContext)
