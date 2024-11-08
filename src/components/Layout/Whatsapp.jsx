@@ -1,4 +1,4 @@
-import './WhatsApp.css';  // Asegúrate de crear este archivo para los estilos
+import './Whatsapp.css';  // Asegúrate de crear este archivo para los estilos
 
 const WhatsAppButton = () => {
     const handleClick = () => {
